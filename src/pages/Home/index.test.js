@@ -20,8 +20,10 @@ describe("When Form is created", () => {
           bubbles: true,
         })
       );
-      await waitFor(() => screen.findByText("En cours"), setTimeout(2000));
-      await waitFor(() => screen.findByText("Message envoyé !"), setTimeout(4000));
+      await screen.findByText("En cours");
+      await waitFor(() => {
+        expect(screen.getByText("Message envoyé !")).toBeInTheDocument()
+      }, {timeout: 2000});
     });
   });
 });
