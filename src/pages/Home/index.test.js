@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Home from "./index";
 
 describe("When Form is created", () => {
@@ -20,9 +20,8 @@ describe("When Form is created", () => {
           bubbles: true,
         })
       );
-      await screen.findByText("En cours");
-      await waitFor(2000);
-      await screen.findByText("Message envoyé !");
+      await waitFor(() => screen.findByText("En cours"), setTimeout(2000));
+      await waitFor(() => screen.findByText("Message envoyé !"), setTimeout(4000));
     });
   });
 });
